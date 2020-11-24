@@ -37,4 +37,26 @@ while(ret):
                 if (first_read):
                     cv2.putText(img, "Eye detected press s to begin", (70,70), cv2.FONT_HERSHEY_PLAIN, 3, (0, 255, 0), 2)
                 else:
-                    cv2.putText((img, "Eyes open!", (70,70), cv2.FONT_HERSHEY_PLAIN, 2, (255, 255, 255), ))
+                    cv2.putText(img, "Eyes open!", (70,70), cv2.FONT_HERSHEY_PLAIN, 2, (255, 255, 255), 2)
+            else:
+                if(first_read):
+                    cv2.putText(img, "No eyes detected", (70, 70), cv2.FONT_HERSHEY_PLAIN, 3, (0, 0, 255), 2)
+                else:
+                    # This will print on console and restart the algorithm
+                    print('Blink detected---------------------------------')
+                    cv2.waitKey(3000)
+                    first_read = True
+    else:
+        cv2.putText(img, "No face detected", (100, 100), cv2.FONT_HERSHEY_PLAIN, 3, (0, 255, 0), 2)
+
+    # Controlling the algorithm with keys
+    cv2.imshow('img', img)
+    a = cv2.waitKey(1)
+    if a==ord('q'):
+        break
+    elif a==ord('s') and first_read:
+        # This will start the detection
+        first_read = False
+
+cap.release()
+cv2.destroyAllWindows()
