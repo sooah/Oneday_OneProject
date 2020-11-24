@@ -9,7 +9,7 @@ canvas1.pack()
 
 label1 = tk.Label(root, text='File Conversion Tool', bg='azure3')
 label1.config(font=('helvetica', 20))
-canvas1.create_widnow(150, 60, window=label1)
+canvas1.create_window(150, 60, window=label1)
 
 def getPNG():
     global im1
@@ -18,6 +18,15 @@ def getPNG():
     im1 = Image.open(import_file_path)
 
 browseButton_PNG = tk.Button(text="    Import PNG File    ", bg='royalblue', fg='white', font=('helvetica', 12, 'bold'))
-canvas1.creat_window(150, 100, window=saveAsButton_JPG)
+canvas1.create_window(150, 100, window=browseButton_PNG)
+
+def convertToJPG():
+    global im1
+
+    export_file_path = filedialog.asksaveasfilename(defaulttextension='.jpg')
+    im1.save(export_file_path)
+
+saveAsButton_JPG = tk.Button(text="Convert PNG to JPG", command=convertToJPG(), bg='royalblue', fg='while', font=('helvetica', 12, 'bold'))
+canvas1.create_window(150, 100, window=saveAsButton_JPG)
 
 root.mainloop()
