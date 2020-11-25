@@ -1,5 +1,4 @@
 import cv2
-import numpy as np
 import dlib
 
 # Connects to your computer's default camera

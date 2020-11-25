@@ -14,11 +14,11 @@ def detect(gray, frame):
 	for (x, y, w, h) in faces:
 		cv2.rectangle(frame, (x, y), ((x+w), (y+h)), (255, 0, 0), 2)
 		roi_gray = gray[y:y+h, x:x+w]
-		roi_color = fram[y:y+h, x:x+w]
+		roi_color = frame[y:y+h, x:x+w]
 		smiles = smile_cascade.detectMultiScale(roi_gray, 1.8, 20)
 
 		for (sx, sy, sw, sh) in smiles:
-			cv2.rectangle(roi_color, (sx, xy), ((sx+sw), (sy+sh)), (0, 0, 225), 2)
+			cv2.rectangle(roi_color, (sx, sy), ((sx+sw), (sy+sh)), (0, 0, 225), 2)
 	return frame
 
 # 1. Capture video_capture frame by frame
@@ -37,7 +37,7 @@ while True:
 
 	# 5. The control breaks once q key is pressed
 	if cv2.waitKey(1) & 0xff == ord('q'):
-		breaks
+		break
 
 # Release the capture once all the processing is done.
 video_capture.release()
